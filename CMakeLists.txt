@@ -36,11 +36,10 @@ set(CMAKE_CUDA_ARCHITECTURES "${CUDA_ARCH_LIST}")
 set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -Xcompiler=${OpenMP_CXX_FLAGS}") 
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_CXX_FLAGS}") 
 
-if(PARALLELPROJ_BUILD_WITH_IDL_WRAPPERS)
-  file(GLOB CUDA_SOURCES src/*.cu wrapper/parallelproj_cuda_idl_wrapper.cu)
-else()
-  file(GLOB CUDA_SOURCES src/*.cu)
-endif()
+
+#--------------------------------------------------------------------------------------------------
+
+file(GLOB CUDA_SOURCES src/*.cu)
 
 add_library(parallelproj_cuda SHARED ${CUDA_SOURCES})
 add_library(parallelproj::parallelproj_cuda ALIAS parallelproj_cuda)
