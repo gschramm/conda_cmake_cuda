@@ -1,0 +1,29 @@
+package:
+  name: parallelproj
+  version: {{ environ.get('GIT_DESCRIBE_TAG','v')[1:] }}
+
+source:
+  path: ..
+
+build:
+  number: {{ GIT_DESCRIBE_NUMBER }}
+
+requirements:
+  build:
+    - cmake
+    - git
+    - cuda-toolkit
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+
+  run:
+    - python >=3.7
+    - numpy >=1.18
+    - scipy >=1.2
+    - matplotlib >=3.2.1
+    - numba >=0.49
+  
+about:
+  home: https://github.com/gschramm/parallelproj
+  license:  MIT License
+  summary: 'parallelized TOF PET projectors'
